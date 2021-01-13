@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Search from './components/Search';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    nominations: null, // list of all the nominations
+    search: ''
+  }
+
+  nominate = () => {
+    console.log('nominate movie');
+  }
+
+  handleSearch = (event) => {
+    console.log('search: ', event.target.value)
+
+    let { name, value } = event.target;
+    this.setState({[name]: value})
+  }
+
+
+  render()
+  {
+    return (
+      <div>
+        <h1>The Shoppies</h1>
+        <Search search={this.state.search} handleSearch={this.handleSearch} />
+      </div>
+      
+    )
+  }
 }
 
 export default App;
