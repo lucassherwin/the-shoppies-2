@@ -19,8 +19,7 @@ class App extends Component {
     const key = process.env.REACT_APP_OMBD_API_KEY;
     console.log('search: ', event.target.value);
     let term = event.target.value;
-    // if the user deletes what is in the search bar clear the results
-    if(term === '')
+    if(term === '') // if the user deletes what is in the search bar clear the results
     {
       this.setState({results: []});
     }
@@ -46,9 +45,24 @@ class App extends Component {
 
   nominate = (movie) => {
     let nominations = this.state.nominations;
-    nominations.push(movie);
-    this.setState({nominations});
-    console.log(this.state.nominations);
+
+    if(nominations.length === 4) // the next nomination will fill the array (max of 5 nominations)
+    {
+      nominations.push(movie);
+      this.setState({nominations});
+      this.setState({search: ''}); // reset search bar to empty after nominating a movie
+      alert('You have nominated 5 movies!');
+    }
+    else if(nominations.length < 4) // less than 4 means we can handle it normally
+    {
+      nominations.push(movie);
+      this.setState({nominations});
+      this.setState({search: ''}); // reset search bar to empty after nominating a movie
+    }
+    else
+    {
+      alert('You can only nominate a max of 5 movies!');
+    }
   }
 
 
