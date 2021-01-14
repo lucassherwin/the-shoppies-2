@@ -49,6 +49,7 @@ class App extends Component {
     if(nominations.length === 4) // the next nomination will fill the array (max of 5 nominations)
     {
       nominations.push(movie);
+      localStorage['nominations'] = JSON.stringify(nominations); // set localStorage to be the updated nominations array
       this.setState({nominations});
       this.setState({search: ''}); // reset search bar to empty after nominating a movie
       alert('You have nominated 5 movies!');
@@ -56,6 +57,7 @@ class App extends Component {
     else if(nominations.length < 4) // less than 4 means we can handle it normally
     {
       nominations.push(movie);
+      localStorage['nominations'] = JSON.stringify(nominations); // set localStorage to be the updated nominations array
       this.setState({nominations});
       this.setState({search: ''}); // reset search bar to empty after nominating a movie
     }
@@ -69,7 +71,16 @@ class App extends Component {
     console.log(`remove ${remove}`)
     let nominations = this.state.nominations;
     nominations = nominations.filter(movie => movie !== remove);
+    localStorage['nominations'] = JSON.stringify(nominations); // set localStorage to be the updated nominations array
     this.setState({nominations});
+  }
+
+  componentDidMount() {
+    // console.log(localStorage['nominations']);
+    if(localStorage['nominations']) // if the array exists in localStorage
+    {
+      this.setState({nominations: JSON.parse(localStorage['nominations'])}); // set array in state
+    }
   }
 
 
