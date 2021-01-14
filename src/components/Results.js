@@ -1,12 +1,12 @@
 import React from 'react'
 
-export default function Results({search, results}) {
+export default function Results({search, results, nominate}) {
     return (
         <div>
             <h2>Resluts for {search}</h2>
             <ul>
                 {results.map((movie, index) => (
-                    <li key={index}>{movie} <button>Nominate!</button></li>
+                    <li key={index}>{movie} <button onClick={() => nominate(movie)}>Nominate!</button></li>
                 ))}
             </ul>
         </div>

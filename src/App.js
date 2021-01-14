@@ -38,15 +38,17 @@ class App extends Component {
         if(!searchResults.includes(resultString)) //if it doesnt already include the value
         {
           searchResults.push(resultString); //push the whole movie obj that is returned into the array
-          // console.log('search results: ', searchResults);
           this.setState({searchResults}); //set it to state
         }
       }
     })
   }
 
-  nominate = () => {
-
+  nominate = (movie) => {
+    let nominations = this.state.nominations;
+    nominations.push(movie);
+    this.setState({nominations});
+    console.log(this.state.nominations);
   }
 
 
@@ -57,7 +59,7 @@ class App extends Component {
         <h1>The Shoppies</h1>
         <Search search={this.state.search} handleSearch={this.handleSearch} />
         {this.state.nominations.length !== 0 ? <Nominations nominations={this.state.nominations} /> : null}
-        {this.state.results.length !== 0 ? <Results results={this.state.results} search={this.state.search} /> : null}
+        {this.state.results.length !== 0 ? <Results results={this.state.results} search={this.state.search} nominate={this.nominate} /> : null}
       </div>
       
     )
