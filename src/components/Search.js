@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function Search(props) {
+export default function Search({search, handleSearch}) {
     return (
         <div>
             <h4>Movie Title: </h4>
-            <input type='text' name='search' placeholder='Enter movie name' value={props.search} onChange={props.handleSearch} />
+            <input type='text' name='search' placeholder='Enter movie name' value={search} onChange={handleSearch} />
         </div>
     )
 }

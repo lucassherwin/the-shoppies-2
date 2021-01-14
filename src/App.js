@@ -19,6 +19,11 @@ class App extends Component {
     const key = process.env.REACT_APP_OMBD_API_KEY;
     console.log('search: ', event.target.value);
     let term = event.target.value;
+    // if the user deletes what is in the search bar clear the results
+    if(term === '')
+    {
+      this.setState({results: []});
+    }
     let { name, value } = event.target;
     this.setState({[name]: value});
 
@@ -29,15 +34,19 @@ class App extends Component {
     .then(res => {
       if(res.data['Response'] !== "False")
       {
-          resultString = `${res.data['Title']} (${res.data['Year']})`
-          if(!searchResults.includes(resultString)) //if it doesnt already include the value
-          {
-              searchResults.push(resultString); //push the whole movie obj that is returned into the array
-              // console.log('search results: ', searchResults);
-              this.setState({searchResults}); //set it to state
-          }
+        resultString = `${res.data['Title']} (${res.data['Year']})`
+        if(!searchResults.includes(resultString)) //if it doesnt already include the value
+        {
+          searchResults.push(resultString); //push the whole movie obj that is returned into the array
+          // console.log('search results: ', searchResults);
+          this.setState({searchResults}); //set it to state
+        }
       }
-  })
+    })
+  }
+
+  nominate = () => {
+
   }
 
 
@@ -47,7 +56,7 @@ class App extends Component {
       <div>
         <h1>The Shoppies</h1>
         <Search search={this.state.search} handleSearch={this.handleSearch} />
-        {this.state.nominations.length !== 0 ? <Nominations /> : null}
+        {this.state.nominations.length !== 0 ? <Nominations nominations={this.state.nominations} /> : null}
         {this.state.results.length !== 0 ? <Results results={this.state.results} search={this.state.search} /> : null}
       </div>
       
