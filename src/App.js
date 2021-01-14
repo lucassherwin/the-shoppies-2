@@ -3,6 +3,8 @@ import Search from './components/Search';
 import Nominations from './components/Nominations.js';
 import Results from './components/Results.js';
 import axios from 'axios';
+import './App.css'
+
 class App extends Component {
   state = {
     nominations: [], // list of all the nominations
@@ -79,11 +81,17 @@ class App extends Component {
   render()
   {
     return (
-      <div>
+      <div className='main'>
         <h1>The Shoppies</h1>
-        <Search search={this.state.search} handleSearch={this.handleSearch} />
-        {this.state.nominations.length !== 0 ? <Nominations nominations={this.state.nominations} removeNomination={this.removeNomination} /> : null}
-        {this.state.results.length !== 0 ? <Results results={this.state.results} search={this.state.search} nominate={this.nominate} nominations={this.state.nominations} /> : null}
+          <div className='search'>
+            <Search search={this.state.search} handleSearch={this.handleSearch} />
+          </div>
+          <div className='nominations'>
+            {this.state.nominations.length !== 0 ? <Nominations nominations={this.state.nominations} removeNomination={this.removeNomination} /> : null}
+          </div>
+          <div className='results'>
+            {this.state.results.length !== 0 ? <Results results={this.state.results} search={this.state.search} nominate={this.nominate} nominations={this.state.nominations} /> : null}
+          </div>
       </div>
       
     )
