@@ -73,7 +73,7 @@ class App extends Component {
         <h1>The Shoppies</h1>
         <Search search={this.state.search} handleSearch={this.handleSearch} />
         {this.state.nominations.length !== 0 ? <Nominations nominations={this.state.nominations} /> : null}
-        {this.state.results.length !== 0 ? <Results results={this.state.results} search={this.state.search} nominate={this.nominate} /> : null}
+        {this.state.results.length !== 0 ? <Results results={this.state.results} search={this.state.search} nominate={this.nominate} nominations={this.state.nominations} /> : null}
       </div>
       
     )
