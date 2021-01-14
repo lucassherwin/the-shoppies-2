@@ -10,14 +10,8 @@ class App extends Component {
     results: []
   }
 
-  nominate = (event) => {
-    event.preventDefault();
-    console.log('nominate movie');
-  }
-
   handleSearch = (event) => {
     const key = process.env.REACT_APP_OMBD_API_KEY;
-    console.log('search: ', event.target.value);
     let term = event.target.value;
     if(term === '') // if the user deletes what is in the search bar clear the results
     {
@@ -68,7 +62,6 @@ class App extends Component {
   }
 
   removeNomination = (remove) => {
-    console.log(`remove ${remove}`)
     let nominations = this.state.nominations;
     nominations = nominations.filter(movie => movie !== remove);
     localStorage['nominations'] = JSON.stringify(nominations); // set localStorage to be the updated nominations array
@@ -76,7 +69,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // console.log(localStorage['nominations']);
     if(localStorage['nominations']) // if the array exists in localStorage
     {
       this.setState({nominations: JSON.parse(localStorage['nominations'])}); // set array in state
