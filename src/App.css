@@ -21,7 +21,7 @@ body {
 }
 
 .search-bar {
-  width: 88%;
+  width: 65%;
 }
 
 .column {
@@ -38,6 +38,9 @@ body {
   margin-left: 15px;
 }
 
+#header {
+  margin-left: 55px;
+}
 
 /* .results {
   outline: 1px solid black;
