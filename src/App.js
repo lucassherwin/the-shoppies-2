@@ -5,7 +5,7 @@ import Results from './components/Results.js';
 import Login from './components/Login.js';
 import UserPage from './components/UserPage.js';
 import axios from 'axios';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 
 class App extends Component {
@@ -81,6 +81,8 @@ class App extends Component {
       password: password
     })
     .then(resp => this.setState({currentUser: resp.data}))
+    // TODO: add a check to see if the user succesfully logged in
+    // TODO: add a redirect that changes the url
   }
 
   componentDidMount() {
