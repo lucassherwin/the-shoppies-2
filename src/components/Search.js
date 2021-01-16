@@ -4,7 +4,7 @@ export default function Search({search, handleSearch}) {
     return (
         <div>
             <h4>Movie Title: </h4>
-            <input type='text' name='search' placeholder='Enter movie name' value={search} onChange={handleSearch} />
+            <input className='search-bar' type='text' name='search' placeholder='Enter movie name' value={search} onChange={handleSearch} />
         </div>
     )
 }

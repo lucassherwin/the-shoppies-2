@@ -1,8 +1,56 @@
-.main {
-  display: flex;
-  flex-direction: row;
+body {
+  background-color:  	#DCDCDC;
+}
+
+.bottom {
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* flex: 50%; */
+  /* justify-content: space-evenly; */
+  /* padding: 40px; */
+  /* width: 80%; */
+  /* margin-right: 40px; */
+  /* display: inline-block; */
 }
 
 .search {
-  background-color: aqua;
+  /* background-color: aqua; */
+  padding-left: 60px;
+  /* background-color: white; */
+  width: 60%;
 }
+
+.search-bar {
+  width: 88%;
+}
+
+.column {
+  /* outline: 1px solid black; */
+  background-color: white;
+  width: 40%;
+  /* display: inline-block; */
+  float: left;
+  margin: 10px;
+  margin-left: 60px;
+}
+
+#results-header {
+  margin-left: 15px;
+}
+
+
+/* .results {
+  outline: 1px solid black;
+  background-color: white;
+  width: 50%;
+  padding: 10px;
+  display: inline-block;
+}
+
+.nominations {
+  display: inline-block;
+  outline: 1px solid black;
+  background-color: white;
+  width: 50%;
+  padding: 10px;
+} */

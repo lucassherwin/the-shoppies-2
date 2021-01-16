@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import Search from './components/Search';
 import Nominations from './components/Nominations.js';
 import Results from './components/Results.js';
+import Login from './components/Login.js';
 import axios from 'axios';
-import './App.css'
+import { Route, Switch } from 'react-router-dom';
+import './App.css';
 
 class App extends Component {
   state = {
     nominations: [], // list of all the nominations
     search: '',
-    results: []
+    results: [],
+    currentUser: null
   }
 
   handleSearch = (event) => {
@@ -70,6 +73,11 @@ class App extends Component {
     this.setState({nominations});
   }
 
+  login = (username, password) => {
+    console.log({username, password});
+    axios.post('')
+  }
+
   componentDidMount() {
     if(localStorage['nominations']) // if the array exists in localStorage
     {
@@ -82,16 +90,25 @@ class App extends Component {
   {
     return (
       <div className='main'>
-        <h1>The Shoppies</h1>
-          <div className='search'>
-            <Search search={this.state.search} handleSearch={this.handleSearch} />
-          </div>
-          <div className='nominations'>
-            {this.state.nominations.length !== 0 ? <Nominations nominations={this.state.nominations} removeNomination={this.removeNomination} /> : null}
-          </div>
-          <div className='results'>
-            {this.state.results.length !== 0 ? <Results results={this.state.results} search={this.state.search} nominate={this.nominate} nominations={this.state.nominations} /> : null}
-          </div>
+        <Switch>
+          <Route exact path='/'>
+            <h1>The Shoppies</h1>
+              <div className='search'>
+                <Search search={this.state.search} handleSearch={this.handleSearch} />
+              </div>
+              <div className='bottom'>
+                <div className='column'>
+                  <Results results={this.state.results} search={this.state.search} nominate={this.nominate} nominations={this.state.nominations} />
+                </div>
+                <div className='column'>
+                  {this.state.nominations.length !== 0 ? <Nominations nominations={this.state.nominations} removeNomination={this.removeNomination} /> : null}
+                </div>
+              </div>
+          </Route>
+          <Route exact path='/login'>
+            <Login login={this.login} />
+          </Route>
+        </Switch>
       </div>
       
     )
