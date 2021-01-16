@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export class UserPage extends Component {
     state = {
-        post: null
+        posts: null
     }
     
     componentDidMount() {
@@ -13,7 +13,7 @@ export class UserPage extends Component {
         })
         // .then(resp => console.log(resp.data))
         // .then(resp => this.savePosts(resp.data))
-        .then(resp => this.setState({post: resp.data}))
+        .then(resp => this.setState({posts: resp.data}))
     }
 
     // savePosts = (posts) => {
@@ -25,12 +25,16 @@ export class UserPage extends Component {
         return (
             <div>
                 <h1>Welcome {this.props.currentUser.username}</h1>
-                {this.state.post ? 
-                    <div>
-                        <h2>{this.state.post.post.title}</h2>
-                        <p>{this.state.post.post.description}</p>
-                        <img src={`http://localhost:3001/${this.state.post.images[0]}`} />
-                    </div>
+                {this.state.posts ? 
+                    this.state.posts.posts.map((post) => (
+                        <div className='user-post'>
+                            <h2 className='post-title'>{post.post.title}</h2>
+                            <p className='post-desc'>{post.post.description}</p>
+                            {post.images.map((image, id) => (
+                                <img src={`http://localhost:3001/${image}`} key={id} className='post-image' />
+                            ))}
+                        </div>
+                    ))
                 : null}
             </div>
         )
@@ -44,5 +48,13 @@ export default UserPage
 //     <div>
 //         <h2>{this.state.post.title}</h2>
 //         <p>{this.state.post.description}</p>
+//     </div>
+// : null}
+
+// {this.state.post ? 
+//     <div>
+//         <h2>{this.state.post.post.title}</h2>
+//         <p>{this.state.post.post.description}</p>
+//         <img src={`http://localhost:3001/${this.state.post.images[0]}`} />
 //     </div>
 // : null}
