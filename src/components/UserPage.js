@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { useHistory } from "react-router-dom";
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 export class UserPage extends Component {
     state = {
@@ -9,7 +9,6 @@ export class UserPage extends Component {
     }
     
     componentDidMount() {
-        console.log('asdf')
         // get all the users images
         axios.post(`http://localhost:3001/posts/${this.props.currentUser.id}`, {
             user_id: this.props.currentUser.id
@@ -21,21 +20,26 @@ export class UserPage extends Component {
 
     handleClick = () => {
         console.log('here')
+        this.setState({redirect: '/createpost'})
     }
 
 
     render() {
+        if(this.state.redirect)
+        {
+            return(<Redirect to={this.state.redirect} />)
+        }
         return (
             <div>
                 <h1>Welcome {this.props.currentUser.username}</h1>
                 <button onClick={this.handleClick} >Create Post</button>
                 {this.state.posts ? 
-                    this.state.posts.posts.map((post) => (
-                        <div className='user-post'>
+                    this.state.posts.posts.map((post, id) => (
+                        <div className='user-post' key={id}>
                             <h2 className='post-title'>{post.post.title}</h2>
                             <p className='post-desc'>{post.post.description}</p>
                             {post.images.map((image, id) => (
-                                <img src={`http://localhost:3001/${image}`} key={id} className='post-image' />
+                                <img src={`http://localhost:3001/${image}`} key={id} className='post-image' alt='help' />
                             ))}
                         </div>
                     ))

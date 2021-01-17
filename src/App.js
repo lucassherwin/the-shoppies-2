@@ -6,7 +6,7 @@ import Login from './components/Login.js';
 import UserPage from './components/UserPage.js';
 import CreatePost from './components/CreatePost.js';
 import axios from 'axios';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 
 class App extends Component {
