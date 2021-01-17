@@ -1,12 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { useHistory } from "react-router-dom";
 import axios from 'axios';
 
 export class UserPage extends Component {
     state = {
-        posts: null
+        posts: null,
+        redirect: null
     }
     
     componentDidMount() {
+        console.log('asdf')
         // get all the users images
         axios.post(`http://localhost:3001/posts/${this.props.currentUser.id}`, {
             user_id: this.props.currentUser.id
@@ -16,15 +19,16 @@ export class UserPage extends Component {
         .then(resp => this.setState({posts: resp.data}))
     }
 
-    // savePosts = (posts) => {
-    //     console.log('here', posts)
-    // }
+    handleClick = () => {
+        console.log('here')
+    }
 
 
     render() {
         return (
             <div>
                 <h1>Welcome {this.props.currentUser.username}</h1>
+                <button onClick={this.handleClick} >Create Post</button>
                 {this.state.posts ? 
                     this.state.posts.posts.map((post) => (
                         <div className='user-post'>

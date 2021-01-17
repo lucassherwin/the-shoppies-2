@@ -1,12 +1,23 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import { useHistory } from 'react-router-dom';
 
 export default function Login({ login }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (event) => {
+    const history = useHistory();
+
+    const handleSubmit = async(event) => {
         event.preventDefault();
-        login(username, password);
+        let success = await login(username, password);
+        if(success)
+        {
+            history.push('/userpage');
+        }
+        else
+        {
+            console.log('something went wrong')
+        }
     }
 
     return (

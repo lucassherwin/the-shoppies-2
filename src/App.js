@@ -4,8 +4,9 @@ import Nominations from './components/Nominations.js';
 import Results from './components/Results.js';
 import Login from './components/Login.js';
 import UserPage from './components/UserPage.js';
+import CreatePost from './components/CreatePost.js';
 import axios from 'axios';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import './App.css';
 
 class App extends Component {
@@ -13,7 +14,8 @@ class App extends Component {
     nominations: [], // list of all the nominations
     search: '',
     results: [],
-    currentUser: null
+    currentUser: null,
+    // redirect: null
   }
 
   handleSearch = (event) => {
@@ -74,13 +76,24 @@ class App extends Component {
     this.setState({nominations});
   }
 
-  login = (username, password) => {
-    console.log({username, password});
-    axios.post('http://localhost:3001/login', {
+  getUser = (username, password) => {
+    return axios.post('http://localhost:3001/login', {
       username: username,
       password: password
     })
-    .then(resp => this.setState({currentUser: resp.data}))
+  }
+
+  login = async (username, password) => {
+    // console.log({username, password});
+    // axios.post('http://localhost:3001/login', {
+    //   username: username,
+    //   password: password
+    // })
+    // .then(resp => this.setState({currentUser: resp.data}))
+
+    let resp = await this.getUser(username, password)
+    this.setState({currentUser: resp.data})
+    return true;
     // TODO: add a check to see if the user succesfully logged in
     // TODO: add a redirect that changes the url
   }
@@ -113,7 +126,13 @@ class App extends Component {
               </div>
           </Route>
           <Route exact path='/login'>
-            {this.state.currentUser ? <UserPage currentUser={this.state.currentUser} /> : <Login login={this.login} />}
+            <Login login={this.login} />
+          </Route>
+          <Route exact path='/userpage'>
+            <UserPage currentUser={this.state.currentUser} /> 
+          </Route>
+          <Route exact path='/createpost'>
+            <CreatePost currentUser={this.state.currentUser} />
           </Route>
         </Switch>
       </div>
