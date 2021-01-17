@@ -1,11 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { DirectUpload } from 'activestorage';
+import axios from 'axios';
 
 export class CreatePost extends Component {
     state = {
         title: '',
         description: '',
         points: 0,
-        tag: '',
+        tag: 'Funny', // have funny as a default value
         images: null
     }
 
@@ -24,7 +26,43 @@ export class CreatePost extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log('submit')
+        console.log('submit');
+
+        let post = {
+            title: this.state.title,
+            description: this.state.description,
+            points: this.state.points,
+            tag: this.state.tag,
+            user_id: this.props.currentUser.id
+        }
+
+        axios.post('http://localhost:3001/posts', {
+            title: post.title,
+            description: post.description,
+            points: post.points,
+            tag: post.tag,
+            user_id: post.user_id
+        })
+        .then(resp => this.uploadFile(Array.from(this.state.images), resp.data))
+    }
+
+    uploadFile = (files, post) => {
+        files.forEach((file) => {
+            let upload = new DirectUpload(file, 'http://localhost:3001/rails/active_storage/direct_uploads')
+            upload.create((error, blob) => {
+                if(error)
+                {
+                    console.log('error', error);
+                }
+                else
+                {
+                    axios.put(`http://localhost:3001/posts/${post.id}`, {
+                        images: blob.signed_id
+                    })
+                    .then(resp => console.log(resp.data))
+                }
+            })
+        })
     }
 
     render() {
