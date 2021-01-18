@@ -88,8 +88,16 @@ class App extends Component {
 
   login = async (username, password) => {
     let resp = await this.getUser(username, password)
-    this.setState({currentUser: resp.data})
-    return true;
+    if(resp.data.username) // if the login was successful
+    {
+      this.setState({currentUser: resp.data})
+      return true;
+    }
+    else
+    {
+      console.log(resp)
+      return false;
+    }
     // TODO: add a check to see if the user succesfully logged in
     // TODO: add a redirect that changes the url
   }

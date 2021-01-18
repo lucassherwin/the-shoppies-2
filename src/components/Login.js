@@ -16,7 +16,7 @@ export default function Login({ login }) {
         }
         else
         {
-            alert('Something went wrong please try again');
+            alert('Incorrect username or password. Please try again.');
             console.log('something went wrong');
         }
     }
