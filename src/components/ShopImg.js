@@ -20,7 +20,15 @@ export class ShopImg extends Component {
     }
 
     handleClick = () => {
-        this.setState({redirect: '/login'})
+        if(this.props.currentUser) // if the user is logged in
+        {
+            this.setState({redirect: '/createpost'}); // direct them to create post
+        }
+        else // user is not logged in
+        {
+            alert('Please log in to create a post'); // shows an alert then directs them to the login page
+            this.setState({redirect: '/login'})
+        }
     }
 
     componentDidMount() {
@@ -38,7 +46,7 @@ export class ShopImg extends Component {
             <div>
                 <h1>Shop IMG</h1>
                 <h2>The Shopify Image Repository</h2>
-                <button onClick={this.handleClick}>Create Account</button>
+                <button onClick={this.handleClick}>Create Post</button>
                 <div>
                     {this.state.images ? this.state.images.map((image, index) => (
                         <img src={`http://localhost:3001/${image}`} alt='alt' key={index} />

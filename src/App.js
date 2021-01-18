@@ -120,7 +120,7 @@ class App extends Component {
           <Route exact path='/shoppies'>
             <TheShoppies handleSearch={this.handleSearch} search={this.state.search} results={this.state.results} nominate={this.nominate} nominations={this.state.nominations} removeNomination={this.removeNomination} />
           </Route>
-          <Route exact path='/shopimg'>
+          <Route exact path='/shopimg' currentUser={this.state.currentUser}>
             <ShopImg />
           </Route>
           <Route exact path='/login'>

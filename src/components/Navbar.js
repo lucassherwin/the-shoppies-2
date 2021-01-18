@@ -15,7 +15,9 @@ export default function Navbar({ currentUser }) {
             <NavLink to="/" exact style={link} activeStyle={{background: 'darkblue'}}>Welcome</NavLink>
             <NavLink to='/shoppies' exact style={link} activeStyle={{background: 'darkblue'}}>The Shoppies</NavLink>
             <NavLink to='/shopimg' exact style={link} activeStyle={{background: 'darkblue'}}>Shop IMG</NavLink>
-            {currentUser ? <NavLink to='/userpage' exact style={link} activeStyle={{background: 'darkblue'}}>My Account</NavLink> : null}
+            {currentUser ? <NavLink to='/userpage' exact style={link} activeStyle={{background: 'darkblue'}}>My Account</NavLink> 
+            : 
+            <NavLink to='/login' exact style={link} activeStyle={{background: 'darkblue'}}>Log In</NavLink>}
         </div>
     )
 }
