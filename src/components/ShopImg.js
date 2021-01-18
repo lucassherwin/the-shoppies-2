@@ -11,15 +11,15 @@ export class ShopImg extends Component {
 
     getImages = (posts) => {
         // this gets the images from each post
-        let images = []
+        let posts_arr = []
         posts.map(post => (
             // post.images.forEach(image => {
             //     images.push(image);
             // })
-            images.push(post.images[0]) // gets only the first image from each post to display
+            posts_arr.push({image: post.images[0], post_id: post.id}) // gets only the first image from each post to display
         ))
         // console.log(images)
-        this.setState({images})
+        this.setState({posts: posts_arr})
     }
 
     handleClick = () => {
@@ -35,7 +35,7 @@ export class ShopImg extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/posts')
+        axios.get('https://powerful-bastion-69893.herokuapp.com/posts')
         .then(resp => this.getImages(resp.data))
     }
 
@@ -51,8 +51,8 @@ export class ShopImg extends Component {
                 <h2>The Shopify Image Repository</h2>
                 <button onClick={this.handleClick}>Create Post</button>
                 <div>
-                    {this.state.images ? this.state.images.map((image, index) => (
-                        <img src={`http://localhost:3001/${image}`} alt='alt' key={index} width='400' height='400' />
+                    {this.state.posts ? this.state.posts.map((post, index) => (
+                        <img src={`https://powerful-bastion-69893.herokuapp.com/${post.image}`} alt='alt' key={index} width='400' height='400' />
                     )) : null}
                 </div>
             </div>

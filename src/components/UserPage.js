@@ -10,7 +10,7 @@ export class UserPage extends Component {
     
     componentDidMount() {
         // get all the users images
-        axios.post(`http://localhost:3001/posts/${this.props.currentUser.id}`, {
+        axios.post(`https://powerful-bastion-69893.herokuapp.com/posts/${this.props.currentUser.id}`, {
             user_id: this.props.currentUser.id
         })
         // .then(resp => console.log(resp.data))
@@ -39,7 +39,7 @@ export class UserPage extends Component {
                             <h2 className='post-title'>{post.post.title}</h2>
                             <p className='post-desc'>{post.post.description}</p>
                             {post.images.map((image, id) => (
-                                <img src={`http://localhost:3001/${image}`} key={id} className='post-image' alt='help' />
+                                <img src={`https://powerful-bastion-69893.herokuapp.com/${image}`} key={id} className='post-image' alt='help' />
                             ))}
                         </div>
                     ))

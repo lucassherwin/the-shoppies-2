@@ -79,7 +79,7 @@ class App extends Component {
   }
 
   getUser = (username, password) => {
-    return axios.post('http://localhost:3001/login', {
+    return axios.post('https://powerful-bastion-69893.herokuapp.com/login', {
       username: username,
       password: password
     })
@@ -100,7 +100,7 @@ class App extends Component {
   }
 
   createUser = (user) => {
-    return axios.post('http://localhost:3001/createuser', {
+    return axios.post('https://powerful-bastion-69893.herokuapp.com/createuser', {
       username: user.username,
       password: user.password
     })

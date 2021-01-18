@@ -36,7 +36,7 @@ export class CreatePost extends Component {
             user_id: this.props.currentUser.id
         }
 
-        axios.post('http://localhost:3001/posts', {
+        axios.post('https://powerful-bastion-69893.herokuapp.com/posts', {
             title: post.title,
             description: post.description,
             points: post.points,
@@ -48,7 +48,7 @@ export class CreatePost extends Component {
 
     uploadFile = (files, post) => {
         files.forEach((file) => {
-            let upload = new DirectUpload(file, 'http://localhost:3001/rails/active_storage/direct_uploads')
+            let upload = new DirectUpload(file, 'https://powerful-bastion-69893.herokuapp.com/rails/active_storage/direct_uploads')
             upload.create((error, blob) => {
                 if(error)
                 {
@@ -56,7 +56,7 @@ export class CreatePost extends Component {
                 }
                 else
                 {
-                    axios.put(`http://localhost:3001/posts/${post.id}`, {
+                    axios.put(`https://powerful-bastion-69893.herokuapp.com/posts/${post.id}`, {
                         images: blob.signed_id
                     })
                     .then(resp => console.log(resp.data))
