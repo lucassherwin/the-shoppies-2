@@ -5,6 +5,7 @@ import UserPage from './components/UserPage.js';
 import CreatePost from './components/CreatePost.js';
 import TheShoppies from './components/TheShoppies.js';
 import Navbar from './components/Navbar.js';
+import ShopImg from './components/ShopImg.js';
 import axios from 'axios';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
@@ -120,7 +121,7 @@ class App extends Component {
             <TheShoppies handleSearch={this.handleSearch} search={this.state.search} results={this.state.results} nominate={this.nominate} nominations={this.state.nominations} removeNomination={this.removeNomination} />
           </Route>
           <Route exact path='/shopimg'>
-
+            <ShopImg />
           </Route>
           <Route exact path='/login'>
             <Login login={this.login} />
