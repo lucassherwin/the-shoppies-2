@@ -6,6 +6,7 @@ import CreatePost from './components/CreatePost.js';
 import TheShoppies from './components/TheShoppies.js';
 import Navbar from './components/Navbar.js';
 import ShopImg from './components/ShopImg.js';
+import CreateAccount from './components/CreateAccount.js';
 import axios from 'axios';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
@@ -86,18 +87,33 @@ class App extends Component {
   }
 
   login = async (username, password) => {
-    // console.log({username, password});
-    // axios.post('http://localhost:3001/login', {
-    //   username: username,
-    //   password: password
-    // })
-    // .then(resp => this.setState({currentUser: resp.data}))
-
     let resp = await this.getUser(username, password)
     this.setState({currentUser: resp.data})
     return true;
     // TODO: add a check to see if the user succesfully logged in
     // TODO: add a redirect that changes the url
+  }
+
+  createUser = (user) => {
+    return axios.post('http://localhost:3001/createuser', {
+      username: user.username,
+      password: user.password
+    })
+  }
+
+  createAccount = async (user) => {
+    let resp = await this.createUser(user);
+    if(resp.data.username)
+    {
+      console.log('success');
+      this.setState({currentUser: resp.data})
+      return true;
+    }
+    else
+    {
+      console.log('error', resp);
+      return false;
+    }
   }
 
   componentDidMount() {
@@ -125,6 +141,9 @@ class App extends Component {
           </Route>
           <Route exact path='/login'>
             <Login login={this.login} />
+          </Route>
+          <Route exact path='/createaccount'>
+            <CreateAccount createAccount={this.createAccount} />
           </Route>
           <Route exact path='/userpage'>
             <UserPage currentUser={this.state.currentUser} /> 
