@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Welcome from './components/Welcome.js';
 import Login from './components/Login.js';
 import UserPage from './components/UserPage.js';
 import CreatePost from './components/CreatePost.js';
@@ -111,7 +111,10 @@ class App extends Component {
     return (
       <div className='main'>
         <Switch>
-          <Route exact path='/'>
+          <Route exact path='/' >
+            <Welcome />
+          </Route>
+          <Route exact path='/shoppies'>
             <TheShoppies handleSearch={this.handleSearch} search={this.state.search} results={this.state.results} nominate={this.nominate} nominations={this.state.nominations} removeNomination={this.removeNomination} />
           </Route>
           <Route exact path='/login'>
