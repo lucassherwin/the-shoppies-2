@@ -15,9 +15,16 @@ export default function Welcome() {
             The nominations are stored in local storage, so if you refres the page, they are saved! This does not use the backend that was
             created for the back-end challenge</p>
             <p>
-            <a href='https://github.com/lucassherwin/the-shoppies-2'>Here is a link to the front-end</a>
-            <a href='https://github.com/lucassherwin/shoppies-images'>Here is a link to the back-end!</a>
+            <p><a href='https://github.com/lucassherwin/the-shoppies-2'>Here is a link to the front-end!</a></p>
+            <p><a href='https://github.com/lucassherwin/shoppies-images'>Here is a link to the back-end!</a></p>
             </p>
+            <p>What I could improve:</p>
+            <ul>
+                <li>Security: right now passwords are stored in plain text in the database. I would use a library like OAuth to fix this.</li>
+                <li>CSS: With more time I would be able to add more styles to the app making it look better. </li>
+                <li>API Key: Right now the API key for OMDB is not hidden! I did this as a quick and dirty way of getting the API to work when hosted on firebase.
+                This would be the first thing I improve!</li>
+            </ul>
         </div>
     )
 }
