@@ -32,7 +32,7 @@ class App extends Component {
     let resultString;
     let searchResults = this.state.results;
 
-    axios.get(`http://www.omdbapi.com/?apikey=${key}&t=${term}`)
+    axios.get(`https://www.omdbapi.com/?apikey=${key}&t=${term}`)
     .then(res => {
       if(res.data['Response'] !== "False")
       {
