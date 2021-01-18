@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 
 export class ShopImg extends Component {
     state = {
         images: null,
-        redirect: null
+        redirect: null,
+        posts: null
     }
 
     getImages = (posts) => {
+        // this gets the images from each post
         let images = []
         posts.map(post => (
-            post.images.forEach(image => {
-                images.push(image);
-            })
+            // post.images.forEach(image => {
+            //     images.push(image);
+            // })
+            images.push(post.images[0]) // gets only the first image from each post to display
         ))
         // console.log(images)
         this.setState({images})
@@ -49,7 +52,7 @@ export class ShopImg extends Component {
                 <button onClick={this.handleClick}>Create Post</button>
                 <div>
                     {this.state.images ? this.state.images.map((image, index) => (
-                        <img src={`http://localhost:3001/${image}`} alt='alt' key={index} />
+                        <img src={`http://localhost:3001/${image}`} alt='alt' key={index} width='400' height='400' />
                     )) : null}
                 </div>
             </div>

@@ -16,8 +16,7 @@ class App extends Component {
     nominations: [], // list of all the nominations
     search: '',
     results: [],
-    currentUser: null,
-    // redirect: null
+    currentUser: null
   }
 
   handleSearch = (event) => {
@@ -88,18 +87,16 @@ class App extends Component {
 
   login = async (username, password) => {
     let resp = await this.getUser(username, password)
-    if(resp.data.username) // if the login was successful
+    if(!resp.data.message) // if the login was successful
     {
       this.setState({currentUser: resp.data})
       return true;
     }
     else
     {
-      console.log(resp)
+      console.log(resp.data.message);
       return false;
     }
-    // TODO: add a check to see if the user succesfully logged in
-    // TODO: add a redirect that changes the url
   }
 
   createUser = (user) => {
@@ -122,6 +119,10 @@ class App extends Component {
       console.log('error', resp);
       return false;
     }
+  }
+
+  postClick = (post) => {
+    console.log('clicked', post);
   }
 
   componentDidMount() {
@@ -158,6 +159,9 @@ class App extends Component {
           </Route>
           <Route exact path='/createpost'>
             <CreatePost currentUser={this.state.currentUser} />
+          </Route>
+          <Route exact path='/post/:id'>
+
           </Route>
         </Switch>
       </div>
