@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import Search from './components/Search';
-import Nominations from './components/Nominations.js';
-import Results from './components/Results.js';
+
 import Login from './components/Login.js';
 import UserPage from './components/UserPage.js';
 import CreatePost from './components/CreatePost.js';
+import TheShoppies from './components/TheShoppies.js';
 import axios from 'axios';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
@@ -113,18 +112,7 @@ class App extends Component {
       <div className='main'>
         <Switch>
           <Route exact path='/'>
-            <h1 id='header'>The Shoppies</h1>
-              <div className='search'>
-                <Search search={this.state.search} handleSearch={this.handleSearch} />
-              </div>
-              <div className='bottom'>
-                <div className='column'>
-                  <Results results={this.state.results} search={this.state.search} nominate={this.nominate} nominations={this.state.nominations} />
-                </div>
-                <div className='column'>
-                  {this.state.nominations.length !== 0 ? <Nominations nominations={this.state.nominations} removeNomination={this.removeNomination} /> : null}
-                </div>
-              </div>
+            <TheShoppies handleSearch={this.handleSearch} search={this.state.search} results={this.state.results} nominate={this.nominate} nominations={this.state.nominations} removeNomination={this.removeNomination} />
           </Route>
           <Route exact path='/login'>
             <Login login={this.login} />
