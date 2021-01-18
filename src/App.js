@@ -112,7 +112,7 @@ class App extends Component {
   {
     return (
       <div className='main'>
-        <Navbar />
+        <Navbar currentUser={this.state.currentUser} />
         <Switch>
           <Route exact path='/' >
             <Welcome />
