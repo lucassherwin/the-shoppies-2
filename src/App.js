@@ -20,6 +20,7 @@ class App extends Component {
 
   handleSearch = (event) => {
     // const key = process.env.REACT_APP_OMBD_API_KEY;
+    const key =  'b953e87d';
     let term = event.target.value;
     if(term === '') // if the user deletes what is in the search bar clear the results
     {
@@ -31,7 +32,7 @@ class App extends Component {
     let resultString;
     let searchResults = this.state.results;
 
-    axios.get(`http://www.omdbapi.com/?apikey=b953e87d&t=${term}`)
+    axios.get(`http://www.omdbapi.com/?apikey=${key}&t=${term}`)
     .then(res => {
       if(res.data['Response'] !== "False")
       {
