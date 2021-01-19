@@ -53,7 +53,7 @@ export class ShopImg extends Component {
                 <div>
                     {this.state.posts ? this.state.posts.map((post, index) => (
                         <img src={`https://powerful-bastion-69893.herokuapp.com/${post.image}`} alt='alt' key={index} width='400' height='400' />
-                    )) : null}
+                    )) : <p>Therea are no posts yet! Click "Create Post" and create the first post!</p>}
                 </div>
             </div>
         )

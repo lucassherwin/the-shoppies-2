@@ -24,6 +24,7 @@ export default function Welcome() {
                 <li>CSS: With more time I would be able to add more styles to the app making it look better. </li>
                 <li>API Key: Right now the API key for OMDB is not hidden! I did this as a quick and dirty way of getting the API to work when hosted on firebase.
                 This would be the first thing I improve!</li>
+                <li>S3: Currently images that are uploaded are saved locally. This is an issue on Heroku because anything saved locally resets periodically. I am currently trying to learn to use an S3 bucket to fix this!</li>
             </ul>
         </div>
     )
