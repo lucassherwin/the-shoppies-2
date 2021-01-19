@@ -37,6 +37,7 @@ export class ShopImg extends Component {
     componentDidMount() {
         axios.get('https://powerful-bastion-69893.herokuapp.com/posts')
         .then(resp => this.getImages(resp.data))
+        // .then(resp => console.log(resp.data))
     }
 
 
@@ -45,15 +46,16 @@ export class ShopImg extends Component {
         {
             return(<Redirect to={this.state.redirect} />)
         }
+        let posts = this.state.posts;
         return (
             <div>
                 <h1>Shop IMG</h1>
                 <h2>The Shopify Image Repository</h2>
                 <button onClick={this.handleClick}>Create Post</button>
                 <div>
-                    {this.state.posts ? this.state.posts.map((post, index) => (
-                        <img src={`https://powerful-bastion-69893.herokuapp.com/${post.image}`} alt='alt' key={index} width='400' height='400' />
-                    )) : <p>Therea are no posts yet! Click "Create Post" and create the first post!</p>}
+                    {posts ? posts.length > 0 ? posts.map((post, index) => (
+                        <img src={`https://powerful-bastion-69893.herokuapp.com/${post.image}`} alt='alt' key={index} width='400' height='400' />))
+                        : <p>Welcome to Shop IMG! There are no posts yet, click the button to create the first post!</p> : null}
                 </div>
             </div>
         )
