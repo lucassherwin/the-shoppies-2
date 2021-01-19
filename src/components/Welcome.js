@@ -20,7 +20,7 @@ export default function Welcome() {
             </p>
             <p>What I could improve:</p>
             <ul>
-                <li>Security: right now passwords are stored in plain text in the database. I would use a library like OAuth to fix this.</li>
+                <li>Security: right now passwords are stored in plain text in the database. I would use a library like Bcrypt to fix this.</li>
                 <li>CSS: With more time I would be able to add more styles to the app making it look better. </li>
                 <li>API Key: Right now the API key for OMDB is not hidden! I did this as a quick and dirty way of getting the API to work when hosted on firebase.
                 This would be the first thing I improve!</li>
