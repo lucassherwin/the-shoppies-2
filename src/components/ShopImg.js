@@ -36,6 +36,7 @@ export class ShopImg extends Component {
 
     componentDidMount() {
         axios.get('https://powerful-bastion-69893.herokuapp.com/posts')
+        // axios.get('')
         .then(resp => this.getImages(resp.data))
         // .then(resp => console.log(resp.data))
     }

@@ -12,7 +12,7 @@ export default function Welcome() {
             I decided to put them all on one app as I would like to be considered for both internships if possible.
             I figured this was the easiest way to do it, rather than submitting two applications.</p>
             <p>The front-end challenge is relatively straightforward, just type in a movie to search, and you can add it to your nominations.
-            The nominations are stored in local storage, so if you refres the page, they are saved! This does not use the backend that was
+            The nominations are stored in local storage, so if you refresh the page, they are saved! This does not use the back-end that was
             created for the back-end challenge</p>
             <p>
             <p><a href='https://github.com/lucassherwin/the-shoppies-2'>Here is a link to the front-end!</a></p>
