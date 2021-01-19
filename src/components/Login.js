@@ -28,7 +28,7 @@ export default function Login({ login }) {
                 <input name='password' type='password' placeholder='Password' onChange={(event) => setPassword(event.target.value)} />
                 <input type='submit' value='Log In' />
             </form>
-            <a href='https://powerful-bastion-69893.herokuapp.com/createaccount'>Don't have an account? Click here!</a>
+            <a href='/createaccount'>Don't have an account? Click here!</a>
         </div>
     )
 }
